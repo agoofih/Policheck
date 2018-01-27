@@ -1,0 +1,109 @@
+package se.my.daik.policheck.screen;
+
+import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+
+import se.my.daik.policheck.R;
+import se.my.daik.policheck.fragments.FavoriteFragment;
+import se.my.daik.policheck.fragments.MainFragment;
+
+public class MainActivity extends AppCompatActivity implements MainFragment.GoToNextFromMain, FavoriteFragment.GoToNextFromFavorite  {
+
+    private ActionBarDrawerToggle mDrawerToggle;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        if (savedInstanceState == null){
+            loadFragment(new MainFragment());
+        }
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        final DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.drawer_open,
+                R.string.drawer_close
+        );
+
+        drawerLayout.addDrawerListener(mDrawerToggle);
+
+        NavigationView navigationView = findViewById(R.id.navigation);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.main_fragment:
+                        loadFragment(new MainFragment());
+                        break;
+
+                    case  R.id.favorite_fragment:
+                        loadFragment(new FavoriteFragment());
+                        break;
+                }
+                item.setChecked(true);
+                drawerLayout.closeDrawers();
+
+                return false;
+            }
+        });
+
+        navigationView.setCheckedItem(R.id.main_fragment);
+    }
+
+
+
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.placeholder, fragment)
+                .commit();
+
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+
+    @Override
+    public void goToNextFragmentFromMain() {
+        FavoriteFragment fragment = new FavoriteFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.placeholder, fragment)
+                .commit();
+    }
+
+    @Override
+    public void goToNextFragmentFromFavorite() {
+        MainFragment fragment = new MainFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.placeholder, fragment)
+                .commit();
+    }
+
+
+}
