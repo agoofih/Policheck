@@ -55,12 +55,12 @@ public class FavoriteFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button button = view.findViewById(R.id.to_main_btn);
+        /*Button button = view.findViewById(R.id.to_main_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToNextFromFavorite.goToNextFragmentFromFavorite();
             }
-        });
+        }); */
     }
 }

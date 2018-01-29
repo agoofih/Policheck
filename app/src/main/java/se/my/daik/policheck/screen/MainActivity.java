@@ -1,17 +1,17 @@
 package se.my.daik.policheck.screen;
 
-import android.os.PersistableBundle;
+
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import se.my.daik.policheck.R;
 import se.my.daik.policheck.fragments.FavoriteFragment;
@@ -20,7 +20,7 @@ import se.my.daik.policheck.fragments.MainFragment;
 public class MainActivity extends AppCompatActivity implements MainFragment.GoToNextFromMain, FavoriteFragment.GoToNextFromFavorite  {
 
     private ActionBarDrawerToggle mDrawerToggle;
-
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Feed");
+            actionBar.setSubtitle("Policheck");
+
+        }
+
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -56,10 +64,19 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
                 switch (item.getItemId()){
                     case R.id.main_fragment:
                         loadFragment(new MainFragment());
+
+                        if (actionBar != null) {
+                            actionBar.setTitle("Feed");
+                            actionBar.setSubtitle("Policheck");
+                        }
                         break;
 
                     case  R.id.favorite_fragment:
                         loadFragment(new FavoriteFragment());
+                        if (actionBar != null) {
+                            actionBar.setTitle("Favorite");
+                            actionBar.setSubtitle("Policheck");
+                        }
                         break;
                 }
                 item.setChecked(true);
