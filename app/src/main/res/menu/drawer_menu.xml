@@ -2,15 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-   <!-- <item
-        android:id="@+id/app_info"
-        android:enabled="true"
-        android:icon="@drawable/icon_two"
-        android:title="@string/app_name"
-        android:background="@color/colorPrimary"
-        />
-        -->
-
     <group android:checkableBehavior="single">
 
         <item
@@ -18,8 +9,7 @@
             android:enabled="true"
             android:icon="@drawable/ic_rss_feed"
             android:title="@string/menu_feed"
-            app:showAsAction="ifRoom"
-            />
+            app:showAsAction="ifRoom" />
 
         <item
             android:id="@+id/favorite_fragment"
@@ -36,4 +26,7 @@
             app:showAsAction="ifRoom" />
 
     </group>
+    <item
+        android:enabled="false"
+        android:title="verison 1.0"></item>
 </menu>
