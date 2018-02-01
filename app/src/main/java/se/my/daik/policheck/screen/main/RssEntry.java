@@ -3,6 +3,7 @@ package se.my.daik.policheck.screen.main;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.media.Image;
 
 /**
  * Created by daik on 2018-02-01.
@@ -15,11 +16,22 @@ public class RssEntry {
     @ColumnInfo(name = "id")
     private int id;
 
+    @ColumnInfo(name = "image")
+    private String image;
+
     @ColumnInfo(name = "headline")
     private String headline;
 
     @ColumnInfo(name = "main_text")
     private String mainText;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getId() {
         return id;

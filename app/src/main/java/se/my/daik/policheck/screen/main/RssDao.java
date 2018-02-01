@@ -18,7 +18,7 @@ public interface RssDao {
     @Insert
     void insert (RssEntry... entities);
 
-    @Query("SELECT * FROM RssEntry")
+    @Query("SELECT * FROM news_items")
     List<RssEntry> read();
 
     @Update
