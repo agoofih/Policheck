@@ -27,7 +27,6 @@ public class MainFragment extends Fragment {
 
     private static final String TAG = "MainFragment";
 
-
     private GoToNextFromMain goToNextFromMain;
 
     public interface GoToNextFromMain {

@@ -7,5 +7,6 @@
     <string name="drawer_close">Poop 2</string>
     <string name="menu_feed">Feed</string>
     <string name="menu_favorite">Favorite</string>
+    <string name="info">Info</string>
 
 </resources>

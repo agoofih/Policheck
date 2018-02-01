@@ -17,9 +17,10 @@ import android.view.MenuItem;
 
 import se.my.daik.policheck.R;
 import se.my.daik.policheck.fragments.FavoriteFragment;
+import se.my.daik.policheck.fragments.InfoFragment;
 import se.my.daik.policheck.fragments.MainFragment;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.GoToNextFromMain, FavoriteFragment.GoToNextFromFavorite {
+public class MainActivity extends AppCompatActivity implements MainFragment.GoToNextFromMain, FavoriteFragment.GoToNextFromFavorite, InfoFragment.GoToNextFromInfo {
 
     private ActionBarDrawerToggle mDrawerToggle;
     ActionBar actionBar;
@@ -80,6 +81,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
                             actionBar.setSubtitle("Policheck");
                         }
                         break;
+
+                    case R.id.info_fragment:
+                        loadFragment(new InfoFragment());
+                        if (actionBar != null) {
+                            actionBar.setTitle("Info");
+                            actionBar.setSubtitle("Policheck");
+                        }
+                        break;
                 }
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -118,6 +127,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
     @Override
     public void goToNextFragmentFromFavorite() {
         MainFragment fragment = new MainFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.placeholder, fragment)
+                .commit();
+    }
+
+    @Override
+    public void goToNextFragmentFromInfo() {
+        InfoFragment fragment = new InfoFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.placeholder, fragment)
                 .commit();
