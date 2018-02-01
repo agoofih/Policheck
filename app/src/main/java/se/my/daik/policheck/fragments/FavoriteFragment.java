@@ -20,9 +20,8 @@ import se.my.daik.policheck.R;
 public class FavoriteFragment extends Fragment {
 
 
-
-
     private GoToNextFromFavorite goToNextFromFavorite;
+
     public interface GoToNextFromFavorite {
         void goToNextFragmentFromFavorite();
     }
@@ -51,8 +50,6 @@ public class FavoriteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorite, container, false);
-
-
     }
 
     @Override

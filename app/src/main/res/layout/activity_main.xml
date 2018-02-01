@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        tools:context="se.my.daik.policheck.screen.MainActivity">
+        tools:context="se.my.daik.policheck.screen.main.MainActivity">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"

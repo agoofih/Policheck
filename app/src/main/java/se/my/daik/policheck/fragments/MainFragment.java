@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import se.my.daik.policheck.R;
+import se.my.daik.policheck.screen.main.ViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +22,8 @@ public class MainFragment extends Fragment {
 
 
     private GoToNextFromMain goToNextFromMain;
-    public interface GoToNextFromMain{
+
+    public interface GoToNextFromMain {
         void goToNextFragmentFromMain();
     }
 
@@ -36,6 +38,7 @@ public class MainFragment extends Fragment {
         goToNextFromMain = (GoToNextFromMain) context;
 
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -60,5 +63,8 @@ public class MainFragment extends Fragment {
                 goToNextFromMain.goToNextFragmentFromMain();
             }
         }); */
+
+       ViewModel viewModel = new ViewModel();
+
     }
 }

@@ -1,4 +1,4 @@
-package se.my.daik.policheck.screen;
+package se.my.daik.policheck.screen.main;
 
 
 import android.content.Context;
@@ -19,7 +19,7 @@ import se.my.daik.policheck.R;
 import se.my.daik.policheck.fragments.FavoriteFragment;
 import se.my.daik.policheck.fragments.MainFragment;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.GoToNextFromMain, FavoriteFragment.GoToNextFromFavorite  {
+public class MainActivity extends AppCompatActivity implements MainFragment.GoToNextFromMain, FavoriteFragment.GoToNextFromFavorite {
 
     private ActionBarDrawerToggle mDrawerToggle;
     ActionBar actionBar;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             loadFragment(new MainFragment());
         }
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.main_fragment:
                         loadFragment(new MainFragment());
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
                         }
                         break;
 
-                    case  R.id.favorite_fragment:
+                    case R.id.favorite_fragment:
                         loadFragment(new FavoriteFragment());
                         if (actionBar != null) {
                             actionBar.setTitle("Favorite");
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
         navigationView.setCheckedItem(R.id.main_fragment);
     }
-
 
 
     private void loadFragment(Fragment fragment) {
