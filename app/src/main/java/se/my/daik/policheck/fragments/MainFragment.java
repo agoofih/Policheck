@@ -1,6 +1,7 @@
 package se.my.daik.policheck.fragments;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,10 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import se.my.daik.policheck.R;
-import se.my.daik.policheck.screen.main.ViewModel;
+import se.my.daik.policheck.screen.main.MainViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,7 +64,8 @@ public class MainFragment extends Fragment {
             }
         }); */
 
-       ViewModel viewModel = new ViewModel();
+       MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
 
     }
 }
