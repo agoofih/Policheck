@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("Feed");
-            actionBar.setSubtitle("Policheck");
+            //actionBar.setSubtitle("Policheck");
 
         }
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
                         if (actionBar != null) {
                             actionBar.setTitle("Feed");
-                            actionBar.setSubtitle("Policheck");
+                            //actionBar.setSubtitle("Policheck");
                         }
                         break;
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
                         loadFragment(new FavoriteFragment());
                         if (actionBar != null) {
                             actionBar.setTitle("Favorite");
-                            actionBar.setSubtitle("Policheck");
+                            //actionBar.setSubtitle("Policheck");
                         }
                         break;
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
                         loadFragment(new InfoFragment());
                         if (actionBar != null) {
                             actionBar.setTitle("Info");
-                            actionBar.setSubtitle("Policheck");
+                            //actionBar.setSubtitle("Policheck");
                         }
                         break;
                 }

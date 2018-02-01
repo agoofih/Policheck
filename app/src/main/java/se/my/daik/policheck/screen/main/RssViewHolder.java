@@ -1,11 +1,16 @@
 package se.my.daik.policheck.screen.main;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import se.my.daik.policheck.R;
 
@@ -15,11 +20,15 @@ import se.my.daik.policheck.R;
 
 public class RssViewHolder extends RecyclerView.ViewHolder {
 
+    private static final String TAG = "RssViewHolder";
+
     private RssEntry rssEntry;
 
     private ImageView rssImage;
     private TextView rssHeadline;
     private TextView rssText;
+    private Button rssFavButton;
+    
 
     public RssViewHolder(View itemView) {
         super(itemView);
@@ -27,7 +36,15 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         rssImage = itemView.findViewById(R.id.rss_image);
         rssHeadline = itemView.findViewById(R.id.rss_headline);
         rssText = itemView.findViewById(R.id.rss_text);
+        rssFavButton = itemView.findViewById(R.id.rss_fav_button);
 
+        rssFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
     }
 
     public void bind(RssEntry entry){
