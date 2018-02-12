@@ -28,7 +28,7 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     private TextView rssHeadline;
     private TextView rssText;
     private Button rssFavButton;
-    
+
 
     public RssViewHolder(View itemView) {
         super(itemView);
@@ -42,6 +42,7 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
 
+                Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
 
             }
         });
