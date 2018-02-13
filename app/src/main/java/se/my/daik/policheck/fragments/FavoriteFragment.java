@@ -75,7 +75,7 @@ public class FavoriteFragment extends Fragment {
         RecyclerView favoriteList = view.findViewById(R.id.favorite_list);
         favoriteList.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        List<RssEntry> temp = new ArrayList<>();
+        List<RssEntry> tempFav = new ArrayList<>();
         RssEntry entry = new RssEntry();
         RssEntry entry2 = new RssEntry();
         RssEntry entry3 = new RssEntry();
@@ -86,34 +86,34 @@ public class FavoriteFragment extends Fragment {
 
         entry.setHeadline("Testar Headline 1");
         entry.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        temp.add(entry);
+        tempFav.add(entry);
 
         entry2.setHeadline("Testar Headline 1");
         entry2.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        temp.add(entry2);
+        tempFav.add(entry2);
 
         entry3.setHeadline("Testar Headline 1");
         entry3.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        temp.add(entry3);
+        tempFav.add(entry3);
 
         entry4.setHeadline("Testar Headline 1");
         entry4.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        temp.add(entry4);
+        tempFav.add(entry4);
 
         entry5.setHeadline("Testar Headline 1");
         entry5.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        temp.add(entry5);
+        tempFav.add(entry5);
 
         entry6.setHeadline("Testar Headline 1");
         entry6.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        temp.add(entry6);
+        tempFav.add(entry6);
 
         entry7.setHeadline("Testar Headline 1");
         entry7.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        temp.add(entry7);
+        tempFav.add(entry7);
 
         RssAdapter adapter = new RssAdapter();
-        adapter.setRssEntryList(temp);
+        adapter.setRssEntryList(tempFav);
         favoriteList.setAdapter(adapter);
 
     }

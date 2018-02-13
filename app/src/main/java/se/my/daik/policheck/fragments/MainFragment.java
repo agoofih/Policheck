@@ -66,6 +66,46 @@ public class MainFragment extends Fragment {
         RecyclerView mainList = view.findViewById(R.id.main_list);
         mainList.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+        List<RssEntry> tempMain = new ArrayList<>();
+        RssEntry entry = new RssEntry();
+        RssEntry entry2 = new RssEntry();
+        RssEntry entry3 = new RssEntry();
+        RssEntry entry4 = new RssEntry();
+        RssEntry entry5 = new RssEntry();
+        RssEntry entry6 = new RssEntry();
+        RssEntry entry7 = new RssEntry();
+
+        entry.setHeadline("Testar Headline 2");
+        entry.setMainText("Testar brödtext 2... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
+        tempMain.add(entry);
+
+        entry2.setHeadline("Testar Headline 2");
+        entry2.setMainText("Testar brödtext 2... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
+        tempMain.add(entry2);
+
+        entry3.setHeadline("Testar Headline 2");
+        entry3.setMainText("Testar brödtext 2... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
+        tempMain.add(entry3);
+
+        entry4.setHeadline("Testar Headline 2");
+        entry4.setMainText("Testar brödtext 2... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
+        tempMain.add(entry4);
+
+        entry5.setHeadline("Testar Headline 2");
+        entry5.setMainText("Testar brödtext 2... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
+        tempMain.add(entry5);
+
+        entry6.setHeadline("Testar Headline 2");
+        entry6.setMainText("Testar brödtext 2... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
+        tempMain.add(entry6);
+
+        entry7.setHeadline("Testar Headline 2");
+        entry7.setMainText("Testar brödtext 2... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
+        tempMain.add(entry7);
+
+        RssAdapter adapter = new RssAdapter();
+        adapter.setRssEntryList(tempMain);
+        mainList.setAdapter(adapter);
 
 
     }
