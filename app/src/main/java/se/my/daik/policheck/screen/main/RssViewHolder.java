@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,9 +29,10 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     private TextView rssHeadline;
     private TextView rssText;
     private Button rssFavButton;
+    private AdapterView.OnItemClickListener mItemClickListener;
 
 
-    public RssViewHolder(View itemView) {
+    public RssViewHolder(View itemView, final RssAdapter.OnFavBtnClickedListener listener) {
         super(itemView);
 
         rssImage = itemView.findViewById(R.id.rss_image);
@@ -38,14 +40,20 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         rssText = itemView.findViewById(R.id.rss_text);
         rssFavButton = itemView.findViewById(R.id.rss_fav_button);
 
-        rssFavButton.setOnClickListener(new View.OnClickListener() {
+        /*rssFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
 
+                listener.onFavBtnClicked(rssEntry);
+
             }
-        });
+        });*/
+    }
+
+    public void setOnItemClickListener(final AdapterView.OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
     }
 
     public void bind(RssEntry entry){
@@ -58,9 +66,10 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public static RssViewHolder newInstance(ViewGroup parent){
+    public static RssViewHolder newInstance(ViewGroup parent, RssAdapter.OnFavBtnClickedListener listener){
         return new RssViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item, parent, false)
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item, parent, false),
+                listener
         );
     }
 

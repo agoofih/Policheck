@@ -1,6 +1,7 @@
 package se.my.daik.policheck.fragments;
 
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.rakangsoftware.tiny.Tiny;
 import com.rakangsoftware.tiny.TinyResult;
@@ -25,16 +27,19 @@ import se.my.daik.policheck.R;
 import se.my.daik.policheck.screen.main.MainViewModel;
 import se.my.daik.policheck.screen.main.RssAdapter;
 import se.my.daik.policheck.screen.main.RssEntry;
+import se.my.daik.policheck.screen.main.RssEntryRepository;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment implements RssAdapter.OnFavBtnClickedListener {
 
     private static final String TAG = "FavoriteFragment";
 
 
     private GoToNextFromFavorite goToNextFromFavorite;
+    private MainViewModel mViewModel;
+    private RssEntryRepository rssEntryRepository;
 
     public interface GoToNextFromFavorite {
         void goToNextFragmentFromFavorite();
@@ -70,53 +75,27 @@ public class FavoriteFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         RecyclerView favoriteList = view.findViewById(R.id.favorite_list);
         favoriteList.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        List<RssEntry> tempFav = new ArrayList<>();
-        RssEntry entry = new RssEntry();
-        RssEntry entry2 = new RssEntry();
-        RssEntry entry3 = new RssEntry();
-        RssEntry entry4 = new RssEntry();
-        RssEntry entry5 = new RssEntry();
-        RssEntry entry6 = new RssEntry();
-        RssEntry entry7 = new RssEntry();
-
-        entry.setHeadline("Testar Headline 1");
-        entry.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        tempFav.add(entry);
-
-        entry2.setHeadline("Testar Headline 1");
-        entry2.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        tempFav.add(entry2);
-
-        entry3.setHeadline("Testar Headline 1");
-        entry3.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        tempFav.add(entry3);
-
-        entry4.setHeadline("Testar Headline 1");
-        entry4.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        tempFav.add(entry4);
-
-        entry5.setHeadline("Testar Headline 1");
-        entry5.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        tempFav.add(entry5);
-
-        entry6.setHeadline("Testar Headline 1");
-        entry6.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        tempFav.add(entry6);
-
-        entry7.setHeadline("Testar Headline 1");
-        entry7.setMainText("Testar brödtext 1... awdawd ad wad adad wa d ad a d ad a d ad a da d a da d a da d ad a dad a da d a da d a da d ad a da d a da d a dadad");
-        tempFav.add(entry7);
-
-        RssAdapter adapter = new RssAdapter();
-        adapter.setRssEntryList(tempFav);
+        final RssAdapter adapter = new RssAdapter(this);
         favoriteList.setAdapter(adapter);
+
+            mViewModel.getmList().observe(this, new Observer<List<RssEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<RssEntry> rssEntries) {
+                adapter.setRssEntryList(rssEntries);
+            }
+        });
 
     }
 
+    @Override
+    public void onFavBtnClicked(RssEntry rssEntry) {
+        Log.d(TAG, "onFavBtnClicked: asdsadasdada");
+        rssEntryRepository.removeItem(rssEntry);
+    }
 
 }

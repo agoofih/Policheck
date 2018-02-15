@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import se.my.daik.policheck.R;
@@ -21,6 +22,8 @@ import se.my.daik.policheck.fragments.InfoFragment;
 import se.my.daik.policheck.fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.GoToNextFromMain, FavoriteFragment.GoToNextFromFavorite, InfoFragment.GoToNextFromInfo {
+
+    private static final String TAG = "MainActivity";
 
     private ActionBarDrawerToggle mDrawerToggle;
     ActionBar actionBar;
@@ -142,6 +145,21 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Log.d(TAG, "onBackPressed: ");
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
     }
 
 
