@@ -40,7 +40,7 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         rssText = itemView.findViewById(R.id.rss_text);
         rssFavButton = itemView.findViewById(R.id.rss_fav_button);
 
-        /*rssFavButton.setOnClickListener(new View.OnClickListener() {
+        rssFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -49,12 +49,10 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
                 listener.onFavBtnClicked(rssEntry);
 
             }
-        });*/
+        });
     }
 
-    public void setOnItemClickListener(final AdapterView.OnItemClickListener mItemClickListener) {
-        this.mItemClickListener = mItemClickListener;
-    }
+
 
     public void bind(RssEntry entry){
 

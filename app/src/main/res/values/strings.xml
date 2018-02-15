@@ -12,6 +12,6 @@
     <string name="info_top_text">Välkommna till appen Policheck \nAppen är tänkt att hjälpa er få en komplett koll på de nyheter från siter (nedan) som berör politik i någon form. Siterna som används nedan är valda för att de är något större och tillhandahåller ett rss flöde som vi kan använder här i appen, det finns ingen vinkling från utvecklarnas sida då det ska vara en öppen syn på allt.</string>
     <string name="info_middle_text">Siterna som används är:\nwww.aftonbladet.se\nwww.aftonbladet.se\nwww.aftonbladet.se\nwww.aftonbladet.se\nwww.aftonbladet.se\nwww.aftonbladet.se</string>
     <string name="info_bottom_text">Vid buggar eller tips, vänligen kontakta oss via facebook:\nwww.facebook.se\n\n\\\\ Folket från Policheck</string>
-
+    <string name="toast_close_message">Tryck en gång till för att stänga appen</string>
 
 </resources>

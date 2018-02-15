@@ -1,5 +1,6 @@
 package se.my.daik.policheck.screen.main;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -19,7 +20,7 @@ public interface RssDao {
     void insert (RssEntry... entities);
 
     @Query("SELECT * FROM news_items")
-    List<RssEntry> read();
+    LiveData<List<RssEntry>> read();
 
     @Update
     void update(RssEntry... entities);
