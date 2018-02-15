@@ -39,11 +39,13 @@ public class MainViewModel extends AndroidViewModel {
     }
 
 
-
-    public void refresh() {
-        rssEntryRepository.refresh();
+    //API
+    public LiveData<List<RssEntry>> getMEntriesFromApi(){
+        return rssEntryRepository.getmEntries();
     }
 
+
+    //ROOM
     public void removeItem(RssEntry rssEntry) {
         rssEntryRepository.removeItem(rssEntry);
     }
@@ -52,5 +54,7 @@ public class MainViewModel extends AndroidViewModel {
         return rssEntryRepository.getAll();
     }
 
-
+    public void setFav(RssEntry rssEntry) {
+        rssEntryRepository.setFavorite(rssEntry);
+    }
 }
