@@ -13,12 +13,11 @@ import java.util.List;
  * Created by nicklasgilbertson on 2018-02-15.
  */
 
-public class PostLiveData extends LiveData<List<RssEntry>> {
+public class PostLiveDataExpressen  extends LiveData<List<RssEntry>> {
 
-    //API CALL: https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.dagenssamhalle.se%2Ffeed%2Fall
-    private static final String TAG = "PostLiveData";
-    public PostLiveData() {
-        Tiny.fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.dagenssamhalle.se%2Ffeed%2Fall&api_key=sjnpgckj5ubjydnrseqaalzvtranvp9rxhviexy8&order_by=title&count=30", RSSResult.class).get(new TinyResult<RSSResult>() {
+    private static final String TAG = "PostLiveDataExpressen";
+    public PostLiveDataExpressen() {
+        Tiny.fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.expressen.se%2Frss%2Fdebatt&api_key=sjnpgckj5ubjydnrseqaalzvtranvp9rxhviexy8&order_by=title&count=30", RSSResult.class).get(new TinyResult<RSSResult>() {
 
             @Override
             public void onSuccess(final RSSResult post) {

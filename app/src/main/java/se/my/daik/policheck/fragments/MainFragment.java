@@ -1,6 +1,7 @@
 package se.my.daik.policheck.fragments;
 
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
     private static boolean mainFragmentLive;
 
     private GoToNextFromMain goToNextFromMain;
+    private MainViewModel viewModel;
 
 
     public interface GoToNextFromMain {
@@ -72,18 +74,27 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         RecyclerView mainList = view.findViewById(R.id.main_list);
         mainList.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        final RssAdapter adapter = new RssAdapter(this);
+        mainList.setAdapter(adapter);
 
         mainFragmentLive = true;
 
-        new PostLiveData();
+
+        viewModel.getCompleteList().observe(this, new Observer<List<RssEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<RssEntry> rssEntries) {
+                adapter.setRssEntryList(rssEntries);
+            }
+        });
+
     }
 
     @Override
     public void onFavBtnClicked(RssEntry rssEntry) {
-
+        viewModel.setFav(rssEntry);
     }
 
 }

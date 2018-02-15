@@ -18,7 +18,9 @@ import java.util.concurrent.Executors;
 
 public class RssEntryRepository {
 
-    private MutableLiveData<List<RssEntry>> entries = new MutableLiveData<>();
+    private LiveData<List<RssEntry>> mEntries = new PostLiveData();
+    private LiveData<List<RssEntry>> yEntries = new PostLiveDataExpressen();
+
 
     private RssDao rssDao;
 
@@ -30,16 +32,18 @@ public class RssEntryRepository {
 
         rssDao = database.getRssEntryDao();
 
-        refresh();
     }
 
-
-    public void refresh(){
-        //new ReadDatabaseAsyncTask(rssDao, entries).execute();
-
-
+    //API
+    public LiveData<List<RssEntry>> getmEntries() {
+        return mEntries;
     }
 
+    public LiveData<List<RssEntry>> getyEntries() {
+        return yEntries;
+    }
+
+    //ROOM
     public LiveData<List<RssEntry>> getAll() {
         return rssDao.read();
     }
@@ -53,6 +57,14 @@ public class RssEntryRepository {
         });
     }
 
+    public void setFavorite(final RssEntry rssEntry) {
+        IO.execute(new Runnable() {
+            @Override
+            public void run() {
+                rssDao.insert(rssEntry);
+            }
+        });
+    }
 
 
 //    private static class ReadDatabaseAsyncTask extends AsyncTask<Void,Void,List<RssEntry>> {
