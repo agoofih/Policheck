@@ -19,6 +19,7 @@ import java.util.List;
 import se.my.daik.policheck.R;
 import se.my.daik.policheck.screen.main.MainActivity;
 import se.my.daik.policheck.screen.main.MainViewModel;
+import se.my.daik.policheck.screen.main.PostLiveData;
 import se.my.daik.policheck.screen.main.RssAdapter;
 import se.my.daik.policheck.screen.main.RssEntry;
 
@@ -76,6 +77,8 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
         mainList.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         mainFragmentLive = true;
+
+        new PostLiveData();
     }
 
     @Override
