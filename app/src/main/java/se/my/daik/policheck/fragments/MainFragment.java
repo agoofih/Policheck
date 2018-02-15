@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.my.daik.policheck.R;
+import se.my.daik.policheck.screen.main.MainActivity;
 import se.my.daik.policheck.screen.main.MainViewModel;
 import se.my.daik.policheck.screen.main.RssAdapter;
 import se.my.daik.policheck.screen.main.RssEntry;
@@ -27,8 +28,10 @@ import se.my.daik.policheck.screen.main.RssEntry;
 public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClickedListener {
 
     private static final String TAG = "MainFragment";
+    private static boolean mainFragmentLive;
 
     private GoToNextFromMain goToNextFromMain;
+
 
     public interface GoToNextFromMain {
         void goToNextFragmentFromMain();
@@ -50,6 +53,7 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
     public void onDetach() {
         super.onDetach();
         goToNextFromMain = null;
+        mainFragmentLive = false;
     }
 
     @Override
@@ -57,6 +61,10 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false);
+    }
+
+    public static boolean isMainFragmentLive() {
+        return mainFragmentLive;
     }
 
     @Override
@@ -67,7 +75,7 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
         RecyclerView mainList = view.findViewById(R.id.main_list);
         mainList.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-
+        mainFragmentLive = true;
     }
 
     @Override

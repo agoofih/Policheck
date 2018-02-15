@@ -13,6 +13,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.my.daik.policheck.Factory;
+
 /**
  * Created by daik on 2018-02-01.
  */
@@ -30,24 +32,21 @@ public class MainViewModel extends AndroidViewModel {
 
         Log.d(TAG, "MainViewModel: ");
 
-        rssEntryRepository = new RssEntryRepository(this.getApplication());
+        rssEntryRepository = Factory.getRssEntryRepository(this.getApplication());
 
-        refresh();
+        //refresh();
         
     }
+
+
 
     public void refresh() {
         rssEntryRepository.refresh();
     }
 
-    /*public void removeItem(RssEntry rssEntry) {
-
-        List<RssEntry> newList;
-        newList = mList.getValue();
-        newList.remove(rssEntry);
-        mList.setValue(newList);
-
-    }*/
+    public void removeItem(RssEntry rssEntry) {
+        rssEntryRepository.removeItem(rssEntry);
+    }
 
     public LiveData<List<RssEntry>> getmList() {
         return rssEntryRepository.getAll();

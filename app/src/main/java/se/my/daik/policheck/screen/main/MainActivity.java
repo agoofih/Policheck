@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import se.my.daik.policheck.R;
 import se.my.daik.policheck.fragments.FavoriteFragment;
@@ -25,8 +26,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
     private static final String TAG = "MainActivity";
 
+    private int closeCounter = 0;
+
     private ActionBarDrawerToggle mDrawerToggle;
     ActionBar actionBar;
+
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
         drawerLayout.addDrawerListener(mDrawerToggle);
 
-        NavigationView navigationView = findViewById(R.id.navigation);
+        navigationView = findViewById(R.id.navigation);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -150,16 +155,23 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
     @Override
     public void onBackPressed() {
 
-        Log.d(TAG, "onBackPressed: ");
-        int count = getFragmentManager().getBackStackEntryCount();
+        if (MainFragment.isMainFragmentLive() == true) {
 
-        if (count == 0) {
-            super.onBackPressed();
-            //additional code
-        } else {
-            getFragmentManager().popBackStack();
+            if (closeCounter == 0){
+                closeCounter++;
+                Toast.makeText(this, R.string.toast_close_message, Toast.LENGTH_SHORT).show();
+            }else{
+                finish();
+            }
+
+        }else{
+            MainFragment fragment = new MainFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.placeholder, fragment)
+                    .commit();
+            actionBar.setTitle("Feed");
+            navigationView.setCheckedItem(R.id.main_fragment);
         }
-
     }
 
 
