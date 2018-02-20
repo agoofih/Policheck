@@ -4,6 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.util.Log;
 import android.view.View;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import me.toptas.rssconverter.RssConverterFactory;
