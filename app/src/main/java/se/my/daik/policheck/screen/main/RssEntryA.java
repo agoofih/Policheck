@@ -7,6 +7,7 @@ package se.my.daik.policheck.screen.main;
 public class RssEntryA {
     private String title;
     private String description;
+    private String image;
 
     public String getTitle() {
         return title;
@@ -22,5 +23,13 @@ public class RssEntryA {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
