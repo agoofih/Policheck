@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.my.daik.policheck.R;
+import se.my.daik.policheck.fragments.FavoriteFragment;
+import se.my.daik.policheck.fragments.MainFragment;
 
 /**
  * Created by daik on 2018-02-01.
@@ -32,7 +34,7 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     private AdapterView.OnItemClickListener mItemClickListener;
 
 
-    public RssViewHolder(View itemView, final RssAdapter.OnFavBtnClickedListener listener) {
+    public RssViewHolder(final View itemView, final RssAdapter.OnFavBtnClickedListener listener) {
         super(itemView);
 
         rssImage = itemView.findViewById(R.id.rss_image);
@@ -40,19 +42,20 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         rssText = itemView.findViewById(R.id.rss_text);
         rssFavButton = itemView.findViewById(R.id.rss_fav_button);
 
+        Log.d(TAG, "RssViewHolder: asd...........");
+
         rssFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
+                Log.d(TAG, "onClick: pooooop");
+
 
                 listener.onFavBtnClicked(rssEntry);
-
             }
         });
     }
-
-
 
     public void bind(RssEntry entry){
 
@@ -65,10 +68,22 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     }
 
     public static RssViewHolder newInstance(ViewGroup parent, RssAdapter.OnFavBtnClickedListener listener){
-        return new RssViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item, parent, false),
-                listener
-        );
+        Log.d(TAG, "newInstance: ---" + listener.getClass());
+        if(listener.getClass() == MainFragment.class){
+            //Log.d(TAG, "newInstance: MAAAAIIIINN");
+            return new RssViewHolder(
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item, parent, false),
+                    listener
+            );
+        }else{
+            //Log.d(TAG, "newInstance: ANNOOOOTTHEER");
+            return new RssViewHolder(
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item_fav, parent, false),
+                    listener
+            );
+        }
+
+
     }
 
 

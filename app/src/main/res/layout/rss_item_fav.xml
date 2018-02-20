@@ -10,7 +10,6 @@
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:contentDescription="rss_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +61,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/ic_favorite_border"
+        android:background="@drawable/ic_favorite_color"
         app:layout_constraintBottom_toBottomOf="@+id/rss_image"
         app:layout_constraintStart_toEndOf="@+id/rss_image"
         app:layout_constraintTop_toBottomOf="@+id/rss_headline" />

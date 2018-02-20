@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +95,10 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
 
     @Override
     public void onFavBtnClicked(RssEntry rssEntry) {
+        Log.d(TAG, "onFavBtnClicked: MAIN" + rssEntry);
+        //RecyclerView mainList = mainList.findViewById(R.id.main_list);
+        //mainList.findViewById(R.id.rss_fav_button).setBackgroundResource(R.drawable.ic_favorite_color);
+
         viewModel.setFav(rssEntry);
     }
 
