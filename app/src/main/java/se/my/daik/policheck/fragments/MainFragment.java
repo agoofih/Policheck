@@ -35,6 +35,7 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
 
     private GoToNextFromMain goToNextFromMain;
     private MainViewModel viewModel;
+    RecyclerView mainList;
 
 
     public interface GoToNextFromMain {
@@ -96,8 +97,11 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
     @Override
     public void onFavBtnClicked(RssEntry rssEntry) {
         Log.d(TAG, "onFavBtnClicked: MAIN" + rssEntry);
-        //RecyclerView mainList = mainList.findViewById(R.id.main_list);
+
+
+        //mainList = mainList.findViewById(R.id.main_list);
         //mainList.findViewById(R.id.rss_fav_button).setBackgroundResource(R.drawable.ic_favorite_color);
+        //rssEntry.setHeadline("AWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWD");
 
         viewModel.setFav(rssEntry);
     }
