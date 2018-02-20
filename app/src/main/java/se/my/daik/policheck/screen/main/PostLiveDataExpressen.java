@@ -3,9 +3,6 @@ package se.my.daik.policheck.screen.main;
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
-import com.rakangsoftware.tiny.Tiny;
-import com.rakangsoftware.tiny.TinyResult;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ import java.util.List;
 public class PostLiveDataExpressen  extends LiveData<List<RssEntry>> {
 
     private static final String TAG = "PostLiveDataExpressen";
-    public PostLiveDataExpressen() {
+    /*public PostLiveDataExpressen() {
         Tiny.fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.expressen.se%2Frss%2Fdebatt&api_key=sjnpgckj5ubjydnrseqaalzvtranvp9rxhviexy8&order_by=title&count=30", RSSResult.class).get(new TinyResult<RSSResult>() {
 
             @Override
@@ -46,5 +43,5 @@ public class PostLiveDataExpressen  extends LiveData<List<RssEntry>> {
 
             }
         });
-    }
+    }*/
 }
