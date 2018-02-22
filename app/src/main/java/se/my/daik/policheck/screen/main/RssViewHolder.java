@@ -1,6 +1,6 @@
 package se.my.daik.policheck.screen.main;
 
-import android.graphics.Color;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.Context;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,8 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     private TextView rssHeadline;
     private TextView rssText;
     private Button rssFavButton;
+
+
     private AdapterView.OnItemClickListener mItemClickListener;
 
 
@@ -45,14 +50,14 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
 
         Log.d(TAG, "RssViewHolder: asd...........");
 
+
         rssFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
-                //Log.d(TAG, "onClick: pooooop");
+                Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
+                Log.d(TAG, "onClick: pooooop");
 
-                rssFavButton.setBackgroundResource(R.drawable.ic_favorite_color);
 
                 listener.onFavBtnClicked(rssEntry);
             }
@@ -62,6 +67,10 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     public void bind(RssEntry entry){
 
         rssEntry = entry;
+
+        Picasso.with(itemView.getContext())
+                .load("http://www.aftonbladet.se/debatt/rss.xml")
+                .into(rssImage);
 
         //rssImage.setBackgroundResource(entry.getImage());
         rssHeadline.setText(entry.getHeadline());
@@ -80,7 +89,8 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         }else{
             //Log.d(TAG, "newInstance: ANNOOOOTTHEER");
             return new RssViewHolder(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item_fav, parent, false), listener
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item_fav, parent, false),
+                    listener
             );
         }
 
