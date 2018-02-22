@@ -27,11 +27,7 @@ public class RssEntryRepository {
     private Executor IO = Executors.newSingleThreadExecutor();
 
     public RssEntryRepository(Context context) {
-
-        PolicheckDatabase database = Room.databaseBuilder(context, PolicheckDatabase.class, "poli-check-database.db").build();
-
-        rssDao = database.getRssEntryDao();
-
+        rssDao = PolicheckDatabase.getInstance(context).getRssEntryDao();
     }
 
     //API
@@ -48,6 +44,10 @@ public class RssEntryRepository {
         return rssDao.read();
     }
 
+    public LiveData<List<RssEntry>> getFav() {
+        return rssDao.readFav(true);
+    }
+
     public void removeItem(final RssEntry rssEntry) {
         IO.execute(new Runnable() {
             @Override
@@ -57,11 +57,21 @@ public class RssEntryRepository {
         });
     }
 
-    public void setFavorite(final RssEntry rssEntry) {
+    public void insert(final List<RssEntry> newList) {
+        final RssEntry[] arr = newList.toArray(new RssEntry[newList.size()]);
         IO.execute(new Runnable() {
             @Override
             public void run() {
-                rssDao.insert(rssEntry);
+                rssDao.insert(arr);
+            }
+        });
+    }
+
+    public void update(final RssEntry rssEntry) {
+        IO.execute(new Runnable() {
+            @Override
+            public void run() {
+                rssDao.update(rssEntry);
             }
         });
     }

@@ -25,6 +25,17 @@ public class RssEntry {
     @ColumnInfo(name = "main_text")
     private String mainText;
 
+    @ColumnInfo(name = "favorite")
+    private boolean favorite;
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     public String getImage() {
         return image;
     }

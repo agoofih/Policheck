@@ -83,7 +83,7 @@ public class FavoriteFragment extends Fragment implements RssAdapter.OnFavBtnCli
         final RssAdapter adapter = new RssAdapter(this);
         favoriteList.setAdapter(adapter);
 
-            mViewModel.getmList().observe(this, new Observer<List<RssEntry>>() {
+            mViewModel.getFavList().observe(this, new Observer<List<RssEntry>>() {
             @Override
             public void onChanged(@Nullable List<RssEntry> rssEntries) {
 
@@ -98,7 +98,7 @@ public class FavoriteFragment extends Fragment implements RssAdapter.OnFavBtnCli
     @Override
     public void onFavBtnClicked(RssEntry rssEntry) {
         Log.d(TAG, "onFavBtnClicked: asdsadasdada");
-        mViewModel.removeItem(rssEntry);
+        mViewModel.update(rssEntry);
     }
 
 }
