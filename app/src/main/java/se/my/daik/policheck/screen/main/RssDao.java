@@ -22,6 +22,9 @@ public interface RssDao {
     @Query("SELECT * FROM news_items")
     LiveData<List<RssEntry>> read();
 
+    @Query("SELECT * FROM news_items WHERE favorite IS :fav ")
+    LiveData<List<RssEntry>> readFav(boolean fav);
+
     @Update
     void update(RssEntry... entities);
 
