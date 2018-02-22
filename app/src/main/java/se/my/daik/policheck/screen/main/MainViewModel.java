@@ -37,7 +37,7 @@ public class MainViewModel extends AndroidViewModel {
 
         rssEntryRepository = Factory.getRssEntryRepository(this.getApplication());
 
-        new FeedOneService().update(rssEntryRepository);
+        //new FeedOneService().update(rssEntryRepository);
     }
 
 

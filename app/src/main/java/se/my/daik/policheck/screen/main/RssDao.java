@@ -22,7 +22,7 @@ public interface RssDao {
     @Query("SELECT * FROM news_items")
     LiveData<List<RssEntry>> read();
 
-    @Query("SELECT * FROM news_items WHERE favorite IS :fav ")
+    @Query("SELECT * FROM news_items WHERE favorite IS :fav")
     LiveData<List<RssEntry>> readFav(boolean fav);
 
     @Update
@@ -30,5 +30,8 @@ public interface RssDao {
 
     @Delete
     void delete(RssEntry... entities);
+
+    @Query("DELETE FROM news_items")
+    void nukeTable();
 
 }

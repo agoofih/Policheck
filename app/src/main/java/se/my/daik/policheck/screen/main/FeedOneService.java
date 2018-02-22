@@ -20,6 +20,7 @@ import retrofit2.Retrofit;
 public class FeedOneService {
 
     private String mFeedUrl = "http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml";
+    RssDao rssDao;
 
     public void update(final RssEntryRepository rssEntryRepository) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -52,7 +53,7 @@ public class FeedOneService {
 
                             newList.add(rssEntry);
                         }
-
+                        rssEntryRepository.nuke();
                         rssEntryRepository.insert(newList);
 
                     }

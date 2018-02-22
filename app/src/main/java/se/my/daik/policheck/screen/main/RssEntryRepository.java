@@ -76,6 +76,15 @@ public class RssEntryRepository {
         });
     }
 
+    public void nuke() {
+        IO.execute(new Runnable() {
+            @Override
+            public void run() {
+                rssDao.nukeTable();
+            }
+        });
+    }
+
 
 //    private static class ReadDatabaseAsyncTask extends AsyncTask<Void,Void,List<RssEntry>> {
 //

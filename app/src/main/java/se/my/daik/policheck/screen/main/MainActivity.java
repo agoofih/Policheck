@@ -1,6 +1,7 @@
 package se.my.daik.policheck.screen.main;
 
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import se.my.daik.policheck.Factory;
 import se.my.daik.policheck.R;
 import se.my.daik.policheck.fragments.FavoriteFragment;
 import se.my.daik.policheck.fragments.InfoFragment;
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
     NavigationView navigationView;
 
+    private RssEntryRepository rssEntryRepository;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
         if (savedInstanceState == null) {
             loadFragment(new MainFragment());
         }
+
+
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -106,6 +114,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
         });
 
         navigationView.setCheckedItem(R.id.main_fragment);
+
+        rssEntryRepository = Factory.getRssEntryRepository(this.getApplication());
+
+        new FeedOneService().update(rssEntryRepository);
+
     }
 
 
@@ -150,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
+
     }
 
     @Override

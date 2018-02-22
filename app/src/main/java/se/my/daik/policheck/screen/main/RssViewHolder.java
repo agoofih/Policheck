@@ -58,6 +58,8 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
                 Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
                 Log.d(TAG, "onClick: pooooop");
 
+                //rssFavButton.setBackgroundResource(R.drawable.ic_favorite_color);
+
                 rssEntry.setFavorite(!rssEntry.isFavorite());
                 listener.onFavBtnClicked(rssEntry);
             }
@@ -77,9 +79,14 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
                 .load(rssEntry.getImage())
                 .into(rssImage);
 
-       // rssImage.setImageURI(entry.getImage());
         rssHeadline.setText(entry.getHeadline());
         rssText.setText(entry.getMainText());
+        if (rssEntry.isFavorite() == true){
+            rssFavButton.setBackgroundResource(R.drawable.ic_favorite_color);
+        }else{
+            rssFavButton.setBackgroundResource(R.drawable.ic_favorite_border);
+        }
+
 
     }
 
