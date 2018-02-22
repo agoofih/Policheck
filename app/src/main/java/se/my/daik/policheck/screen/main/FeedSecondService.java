@@ -1,7 +1,5 @@
 package se.my.daik.policheck.screen.main;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +15,9 @@ import retrofit2.Retrofit;
  * Created by nicklasgilbertson on 2018-02-22.
  */
 
-public class FeedOneService {
+public class FeedSecondService {
 
-    private String mFeedUrl = "http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml";
+    private String mFeedUrl = "http://feeds.bbci.co.uk/news/politics/rss.xml?edition=uk";
     RssDao rssDao;
 
     public void update(final RssEntryRepository rssEntryRepository) {

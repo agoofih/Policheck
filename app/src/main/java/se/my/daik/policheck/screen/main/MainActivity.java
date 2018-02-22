@@ -118,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
         rssEntryRepository = Factory.getRssEntryRepository(this.getApplication());
 
         new FeedOneService().update(rssEntryRepository);
+        new FeedSecondService().update(rssEntryRepository);
+        rssEntryRepository.nuke();
 
     }
 
