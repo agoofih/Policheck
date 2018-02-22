@@ -1,15 +1,10 @@
 package se.my.daik.policheck.screen.main;
 
-import android.arch.lifecycle.LiveData;
 import android.util.Log;
-import android.view.View;
 
-import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
 import me.toptas.rssconverter.RssConverterFactory;
 import me.toptas.rssconverter.RssFeed;
 import me.toptas.rssconverter.RssItem;
@@ -19,18 +14,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
- * Created by nicklasgilbertson on 2018-02-15.
+ * Created by nicklasgilbertson on 2018-02-22.
  */
 
-public class PostLiveData extends LiveData<List<RssEntry>> {
-
-    private static final String TAG = "PostLiveData";
+public class FeedOneService {
 
     private String mFeedUrl = "http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml";
-    private RssAdapter mAdapter;
 
-
-    public PostLiveData() {
+    public void update(final RssEntryRepository rssEntryRepository) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://github.com")
                 .addConverterFactory(RssConverterFactory.create())
@@ -58,20 +49,11 @@ public class PostLiveData extends LiveData<List<RssEntry>> {
 //                            Date date = sdf.parse(someDate);
 //                            System.out.println(date.getTime());
 
-                            Log.d(TAG, "onResponse: FLÖDESTEXTEN " + rssEntryA.getDescription());
-                            Log.d(TAG, "onResponse: FLÖDESTITELN " + rssEntryA.getTitle());
-                            Log.d(TAG, "onResponse: FLÖDESBILDEN" + rssEntryA.getImage());
 
                             newList.add(rssEntry);
                         }
 
-                        for (RssEntry rssEntry : newList) {
-                            Log.d(TAG, "onSuccess: JOHANÄRKING " + rssEntry.getHeadline());
-                            Log.d(TAG, "onSuccess: JOHANÄRCOOL " + rssEntry.getImage());
-                            Log.d(TAG, "onSuccess: JOHANÄRAWESOME " + rssEntry.getMainText());
-                        }
-
-                        setValue(newList);
+                        rssEntryRepository.insert(newList);
 
                     }
 
@@ -82,10 +64,5 @@ public class PostLiveData extends LiveData<List<RssEntry>> {
                     }
                 });
     }
-
-    /**
-     * Loads fetched {@link RssItem} list to RecyclerView
-     * @param rssItems
-     */
 
 }

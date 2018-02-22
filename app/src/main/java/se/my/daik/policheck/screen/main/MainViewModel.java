@@ -14,6 +14,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import se.my.daik.policheck.Factory;
@@ -28,8 +30,6 @@ public class MainViewModel extends AndroidViewModel {
 
     private RssEntryRepository rssEntryRepository;
 
-    private MediatorLiveData<List<RssEntry>> mList = new MediatorLiveData<>();
-
     public MainViewModel(@NonNull final Application application) {
         super(application);
 
@@ -37,44 +37,16 @@ public class MainViewModel extends AndroidViewModel {
 
         rssEntryRepository = Factory.getRssEntryRepository(this.getApplication());
 
-        //refresh();
-
-        mList.addSource(rssEntryRepository.getmEntries(), new Observer<List<RssEntry>>() {
-            @Override
-            public void onChanged(@Nullable List<RssEntry> rssEntries) {
-                if (rssEntries != null) {
-                    if (mList.getValue() != null){
-                        List<RssEntry> newList = mList.getValue();
-                        newList.addAll(rssEntries);
-                        mList.setValue(newList);
-                    } else {
-                        mList.setValue(rssEntries);
-                    }
-
-                }
-            }
-        });
-
-        mList.addSource(rssEntryRepository.getyEntries(), new Observer<List<RssEntry>>() {
-            @Override
-            public void onChanged(@Nullable List<RssEntry> rssEntries) {
-                if (rssEntries != null) {
-                    if (mList.getValue() != null){
-                        List<RssEntry> newList = mList.getValue();
-                        newList.addAll(rssEntries);
-                        mList.setValue(newList);
-                    } else {
-                        mList.setValue(rssEntries);
-                    }
-                }
-            }
-        });
-
+        new FeedOneService().update(rssEntryRepository);
     }
 
 
     public LiveData<List<RssEntry>> getCompleteList() {
-        return mList;
+        return rssEntryRepository.getAll();
+    }
+
+    public LiveData<List<RssEntry>> getFavList() {
+        return rssEntryRepository.getFav();
     }
 
 
@@ -93,7 +65,7 @@ public class MainViewModel extends AndroidViewModel {
         return rssEntryRepository.getAll();
     }
 
-    public void setFav(RssEntry rssEntry) {
-        rssEntryRepository.setFavorite(rssEntry);
+    public void update(RssEntry rssEntry) {
+        rssEntryRepository.update(rssEntry);
     }
 }

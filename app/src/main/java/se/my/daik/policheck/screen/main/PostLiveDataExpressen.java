@@ -6,6 +6,14 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.toptas.rssconverter.RssConverterFactory;
+import me.toptas.rssconverter.RssFeed;
+import me.toptas.rssconverter.RssItem;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 /**
  * Created by nicklasgilbertson on 2018-02-15.
  */
@@ -13,35 +21,55 @@ import java.util.List;
 public class PostLiveDataExpressen  extends LiveData<List<RssEntry>> {
 
     private static final String TAG = "PostLiveDataExpressen";
-    /*public PostLiveDataExpressen() {
-        Tiny.fetch("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.expressen.se%2Frss%2Fdebatt&api_key=sjnpgckj5ubjydnrseqaalzvtranvp9rxhviexy8&order_by=title&count=30", RSSResult.class).get(new TinyResult<RSSResult>() {
 
-            @Override
-            public void onSuccess(final RSSResult post) {
+    private String mFeedUrl = "http://feeds.bbci.co.uk/news/politics/rss.xml?edition=uk";
+    private RssAdapter mAdapter;
 
-                List<RssEntry> newList = new ArrayList<>();
 
-                for (RssEntryA rssEntryA : post.getItems()) {
+    public PostLiveDataExpressen() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://github.com")
+                .addConverterFactory(RssConverterFactory.create())
+                .build();
 
-                    RssEntry rssEntry = new RssEntry();
-                    rssEntry.setHeadline(rssEntryA.getTitle());
-                    rssEntry.setMainText(rssEntryA.getDescription());
+        RssService service = retrofit.create(RssService.class);
+        service.getRss(mFeedUrl)
+                .enqueue(new Callback<RssFeed>() {
+                    @Override
+                    public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
+                        //onRssItemsLoaded(response.body().getItems());
 
-                    newList.add(rssEntry);
-                }
+                        List<RssEntry> newList = new ArrayList<>();
 
-                for (RssEntry rssEntry : newList) {
-                    Log.d(TAG, "onSuccess: JOHAN " + rssEntry.getHeadline());
-                }
+                        for (RssItem rssEntryA : response.body().getItems()) {
 
-                setValue(newList);
-            }
+                            RssEntry rssEntry = new RssEntry();
+                            rssEntry.setHeadline(rssEntryA.getTitle());
+                            rssEntry.setMainText(rssEntryA.getDescription());
+                            rssEntry.setImage(rssEntryA.getImage());
 
-            @Override
-            public void onFail(final Throwable throwable) {
-                Log.d(TAG, "onFail() called with: throwable = [" + throwable + "]");
+                            Log.d(TAG, "onResponse: FLÖDESTEXTEN " + rssEntryA.getDescription());
+                            Log.d(TAG, "onResponse: FLÖDESTITELN " + rssEntryA.getTitle());
+                            Log.d(TAG, "onResponse: FLÖDESBILDEN" + rssEntryA.getImage());
 
-            }
-        });
-    }*/
+                            newList.add(rssEntry);
+                        }
+
+                        for (RssEntry rssEntry : newList) {
+                            Log.d(TAG, "onSuccess: JOHANÄRKING " + rssEntry.getHeadline());
+                            Log.d(TAG, "onSuccess: JOHANÄRCOOL " + rssEntry.getImage());
+                            Log.d(TAG, "onSuccess: JOHANÄRAWESOME " + rssEntry.getMainText());
+                        }
+
+                        setValue(newList);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<RssFeed> call, Throwable t) {
+                        //Toast.makeText(MainFragment.this, "Failed to fetchRss RSS feed!", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+    }
 }
