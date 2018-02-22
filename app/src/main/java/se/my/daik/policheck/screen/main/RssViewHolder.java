@@ -58,22 +58,26 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
                 Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
                 Log.d(TAG, "onClick: pooooop");
 
-                rssFavButton.setBackgroundResource(R.drawable.ic_favorite_color);
-
+                rssEntry.setFavorite(!rssEntry.isFavorite());
                 listener.onFavBtnClicked(rssEntry);
             }
         });
     }
+
+    public void setOnItemClickListener(final AdapterView.OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
+
 
     public void bind(RssEntry entry){
 
         rssEntry = entry;
 
         Picasso.with(itemView.getContext())
-                .load("http://www.aftonbladet.se/debatt/rss.xml")
+                .load(rssEntry.getImage())
                 .into(rssImage);
 
-        //rssImage.setBackgroundResource(entry.getImage());
+       // rssImage.setImageURI(entry.getImage());
         rssHeadline.setText(entry.getHeadline());
         rssText.setText(entry.getMainText());
 
@@ -90,7 +94,8 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         }else{
             //Log.d(TAG, "newInstance: ANNOOOOTTHEER");
             return new RssViewHolder(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item_fav, parent, false), listener
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item_fav, parent, false),
+                    listener
             );
         }
 

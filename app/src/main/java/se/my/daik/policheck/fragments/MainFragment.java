@@ -13,15 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import se.my.daik.policheck.R;
-import se.my.daik.policheck.screen.main.MainActivity;
 import se.my.daik.policheck.screen.main.MainViewModel;
-import se.my.daik.policheck.screen.main.PostLiveData;
 import se.my.daik.policheck.screen.main.RssAdapter;
 import se.my.daik.policheck.screen.main.RssEntry;
 
@@ -103,7 +99,7 @@ public class MainFragment extends Fragment implements RssAdapter.OnFavBtnClicked
         //mainList.findViewById(R.id.rss_fav_button).setBackgroundResource(R.drawable.ic_favorite_color);
         //rssEntry.setHeadline("AWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWDAWD");
 
-        viewModel.setFav(rssEntry);
+        viewModel.update(rssEntry);
     }
 
 }
