@@ -109,7 +109,7 @@ public class PostLiveData extends LiveData<List<RssEntry>> {
                     @Override
                     public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
                         //onRssItemsLoaded(response.body().getItems());
-
+                        
                         List<RssEntry> newList = new ArrayList<>();
 
                         for (RssItem rssEntryA : response.body().getItems()) {
@@ -119,17 +119,23 @@ public class PostLiveData extends LiveData<List<RssEntry>> {
                             rssEntry.setMainText(rssEntryA.getDescription());
                             rssEntry.setImage(rssEntryA.getImage());
 
-                            Log.d(TAG, "onResponse: FLÖDESTEXTEN " + rssEntryA.getDescription());
-                            Log.d(TAG, "onResponse: FLÖDESTITELN " + rssEntryA.getTitle());
-                            Log.d(TAG, "onResponse: FLÖDESBILDEN" + rssEntryA.getImage());
+                            Log.d(TAG, "*************** Titel: " + rssEntryA.getTitle());
+                            Log.d(TAG, "*************** Description: " + rssEntryA.getDescription());
+                            Log.d(TAG, "*************** image: " + rssEntryA.getImage());
+                            Log.d(TAG, "*************** link: " + rssEntryA.getLink());
+                            Log.d(TAG, "*************** PublishDate: " + rssEntryA.getPublishDate());
+
+                           // Log.d(TAG, "onResponse: FLÖDESTEXTEN " + rssEntryA.getDescription());
+                          //  Log.d(TAG, "onResponse: FLÖDESTITELN " + rssEntryA.getTitle());
+                          //  Log.d(TAG, "onResponse: FLÖDESBILDEN" + rssEntryA.getImage());
 
                             newList.add(rssEntry);
                         }
 
                         for (RssEntry rssEntry : newList) {
-                            Log.d(TAG, "onSuccess: JOHANÄRKING " + rssEntry.getHeadline());
-                            Log.d(TAG, "onSuccess: JOHANÄRCOOL " + rssEntry.getImage());
-                            Log.d(TAG, "onSuccess: JOHANÄRAWESOME " + rssEntry.getMainText());
+                           // Log.d(TAG, "onSuccess: JOHANÄRKING " + rssEntry.getHeadline());
+                           // Log.d(TAG, "onSuccess: JOHANÄRCOOL " + rssEntry.getImage());
+                            //Log.d(TAG, "onSuccess: JOHANÄRAWESOME " + rssEntry.getMainText());
                         }
 
                         setValue(newList);

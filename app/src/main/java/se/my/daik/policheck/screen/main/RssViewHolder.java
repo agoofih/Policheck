@@ -58,6 +58,7 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
                 Log.d(TAG, "FAVBUTTON CLICKED 1" + v);
                 Log.d(TAG, "onClick: pooooop");
 
+                rssFavButton.setBackgroundResource(R.drawable.ic_favorite_color);
 
                 listener.onFavBtnClicked(rssEntry);
             }
@@ -89,8 +90,7 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         }else{
             //Log.d(TAG, "newInstance: ANNOOOOTTHEER");
             return new RssViewHolder(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item_fav, parent, false),
-                    listener
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.rss_item_fav, parent, false), listener
             );
         }
 
