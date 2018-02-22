@@ -1,5 +1,6 @@
 package se.my.daik.policheck.screen.main;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.Context;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,8 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     private TextView rssHeadline;
     private TextView rssText;
     private Button rssFavButton;
+
+
     private AdapterView.OnItemClickListener mItemClickListener;
 
 
@@ -43,6 +49,7 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
         rssFavButton = itemView.findViewById(R.id.rss_fav_button);
 
         Log.d(TAG, "RssViewHolder: asd...........");
+
 
         rssFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +67,10 @@ public class RssViewHolder extends RecyclerView.ViewHolder {
     public void bind(RssEntry entry){
 
         rssEntry = entry;
+
+        Picasso.with(itemView.getContext())
+                .load("http://www.aftonbladet.se/debatt/rss.xml")
+                .into(rssImage);
 
         //rssImage.setBackgroundResource(entry.getImage());
         rssHeadline.setText(entry.getHeadline());
