@@ -12,10 +12,10 @@
 
     <ImageView
         android:id="@+id/rss_image"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="rss_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
