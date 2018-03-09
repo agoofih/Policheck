@@ -24,9 +24,9 @@ import static okhttp3.internal.http.HttpDate.parse;
  * Created by nicklasgilbertson on 2018-02-22.
  */
 
-public class FeedOneService {
+public class FeedThirdService {
 
-    private String mFeedUrl = "http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml";
+    private String mFeedUrl = "http://feeds.feedburner.com/timeblogs/swampland";
     RssDao rssDao;
 
     public void update(final RssEntryRepository rssEntryRepository) {

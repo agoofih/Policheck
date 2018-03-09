@@ -1,7 +1,13 @@
 package se.my.daik.policheck.screen.main;
 
+import android.util.Log;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import me.toptas.rssconverter.RssConverterFactory;
 import me.toptas.rssconverter.RssFeed;
@@ -10,6 +16,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static android.content.ContentValues.TAG;
+import static okhttp3.internal.http.HttpDate.parse;
 
 /**
  * Created by nicklasgilbertson on 2018-02-22.
@@ -43,22 +52,26 @@ public class FeedSecondService {
                             rssEntry.setImage(rssEntryA.getImage());
                             rssEntryA.getPublishDate();
 
-//                            String someDate = "Thu, 22 Feb 2018 01:37:55";
-//                            SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
-//                            Date date = sdf.parse(someDate);
-//                            System.out.println(date.getTime());
+                            String timeStamp = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
 
+                            try {
+                                System.out.println(timeStamp);
+                                Log.d(TAG, "onResponse: " + timeStamp);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            rssEntryA.setPublishDate(timeStamp);
 
                             newList.add(rssEntry);
                         }
-                       // rssEntryRepository.nuke();
+
                         rssEntryRepository.insert(newList);
 
                     }
 
                     @Override
                     public void onFailure(Call<RssFeed> call, Throwable t) {
-                        //Toast.makeText(MainFragment.this, "Failed to fetchRss RSS feed!", Toast.LENGTH_SHORT).show();
 
                     }
                 });

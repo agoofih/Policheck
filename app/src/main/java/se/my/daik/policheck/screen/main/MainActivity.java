@@ -18,6 +18,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import se.my.daik.policheck.Factory;
 import se.my.daik.policheck.R;
 import se.my.daik.policheck.fragments.FavoriteFragment;
@@ -119,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.GoTo
 
         new FeedOneService().update(rssEntryRepository);
         new FeedSecondService().update(rssEntryRepository);
+        new FeedThirdService().update(rssEntryRepository);
         rssEntryRepository.nuke();
 
     }
